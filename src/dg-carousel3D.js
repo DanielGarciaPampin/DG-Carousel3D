@@ -1,8 +1,8 @@
 $( document ).ready(function() {
 
-	$(window).load(function(){
+	/*$(window).load(function(){
 		$("#dg-carousel3D-container").addClass("ready");
-	});
+	});*/
 
 	var DGCarousel3D = (function() {
 		var $carousel_container = $('#dg-carousel3D-container');
@@ -254,13 +254,14 @@ $( document ).ready(function() {
 		}
 
 		var rotateTimer = function(option1, option2) {
-			if (option1 >= 0 ) {
-				clearInterval(rotateTimer);
-				if (option2 == "forward") {
-					rotateTimer = setInterval(next, option1);
-				} else {
-					rotateTimer = setInterval(previous, option1);
-				}
+			if (option1 < 1000 ) {
+				option1 = 1000;
+			}
+			clearInterval(rotateTimer);
+			if (option2 == "forward") {
+				rotateTimer = setInterval(next, option1);
+			} else {
+				rotateTimer = setInterval(previous, option1);
 			}
 		}
 
@@ -317,15 +318,17 @@ $( document ).ready(function() {
 
 					$(this).mouseover(function(event){
 						$(this).css({'transform' : 'translateZ(' + -max_depth + 'px)'});
-						console.log("encima");
 					});
 
 					$(this).mouseout(function(event){
 						$(this).css({'transform' : 'translateZ(' + 0 + 'px)'});
-						console.log("fuera");
 					});
 				});
 			}
+		}
+
+		var setInteraction = function(option) {
+
 		}
 
 		return {
@@ -335,17 +338,19 @@ $( document ).ready(function() {
 			setPerspective: setPerspective,
 			setOpacity: setOpacity,
 			rotateTimer: rotateTimer,
-			addEffect: addEffect
+			addEffect: addEffect,
+			setInteraction: setInteraction
 
 		};
 
 	})();
 
-	DGCarousel3D.build(450, 340, 220, 330, 1, 2);
-	DGCarousel3D.setVisibility("visible"); //visible, hidden
-	DGCarousel3D.setAxis("vertical"); //horizontal, vertical
-	DGCarousel3D.setPerspective(4000); // 1 - infinite
+	DGCarousel3D.build(230, 340, 220, 330, 1, 1);
+	DGCarousel3D.setVisibility("hidden"); //visible, hidden
+	DGCarousel3D.setAxis("horizontal"); //horizontal, vertical
+	DGCarousel3D.setPerspective(1000); // 1 - infinite
 	DGCarousel3D.setOpacity(1); // 0 - 1
-	DGCarousel3D.rotateTimer(5000, "backward"); //0 - infinite
-	DGCarousel3D.addEffect(2, 20); // 0 - No effects, 1 - Effect1
+	DGCarousel3D.rotateTimer(1000, "backward"); //0 - infinite
+	DGCarousel3D.addEffect(2, -90); // 0 - No effects, 1 - Effect1
+	DGCarousel3D.setInteraction(0);
 });

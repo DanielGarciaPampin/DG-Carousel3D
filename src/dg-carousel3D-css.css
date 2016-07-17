@@ -1,0 +1,30 @@
+
+#dg-carousel3D-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  perspective: 1000px;
+}
+
+#dg-carousel3D {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+#dg-carousel3D figure {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  transition: transform 0.8s;
+  opacity: 1;
+  perspective: 1000px;
+}
